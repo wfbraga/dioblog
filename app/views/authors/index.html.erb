@@ -1,29 +1,21 @@
 <% content_for :title, "Authors" %>
 
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
+<%= render 'shared/header' %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Authors</h1>
-    <%= link_to "New author", new_author_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+<main class="container mx-auto mt-32 px-4 sm:px-6 lg:px-8 py-8">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-3xl font-bold text-gray-900">Autores</h2>
+    <%= link_to 'Novo Autor', new_author_path, class: 'px-4 py-2 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition duration-150 ease-in-out' %>
   </div>
 
-  <div id="authors" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @authors.any? %>
-      <% @authors.each do |author| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= render author %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", author, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_author_path(author), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", author, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <% @authors.each do |author| %>
+      <%= link_to author_path(author), class: "block" do %>
+        <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2"><%= author.name %></h3>
+          <p class="text-gray-600"><%= pluralize(author.books.count, 'livro', 'livros') %></p>
         </div>
       <% end %>
-    <% else %>
-      <p class="text-center my-10">No authors found.</p>
     <% end %>
   </div>
-</div>
+</main>

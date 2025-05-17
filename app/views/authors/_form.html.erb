@@ -1,9 +1,8 @@
-<%= form_with(model: author, class: "contents") do |form| %>
+<%= form_with(model: author, class: "space-y-6") do |form| %>
   <% if author.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
-
-      <ul class="list-disc ml-6">
+    <div class="bg-red-50 p-4 rounded-lg">
+      <h2 class="text-red-800 text-lg font-medium mb-2"><%= pluralize(author.errors.count, "erro") %> impediu que este autor fosse salvo:</h2>
+      <ul class="list-disc list-inside text-red-700">
         <% author.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,12 +10,13 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": author.errors[:name].none?, "border-red-400 focus:outline-red-600": author.errors[:name].any?}] %>
+  <div>
+    <%= form.label :name, "Nome", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500" %>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  <div class="flex space-x-4">
+    <%= form.submit class: "px-4 py-2 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition duration-150 ease-in-out" %>
+    <%= link_to 'Voltar', authors_path, class: "px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition duration-150 ease-in-out" %>
   </div>
 <% end %>

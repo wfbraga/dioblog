@@ -1,19 +1,22 @@
 <%= render 'shared/header' %>
 
+<!-- Main Content -->
 <main class="container mx-auto mt-32 px-4 sm:px-6 lg:px-8 py-8">
-  <div class="flex justify-between items-center mb-6">
-    <h2 class="text-3xl font-bold text-gray-900">Livros</h2>
-    <%= link_to 'Novo Livro', new_book_path, class: 'px-4 py-2 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition duration-150 ease-in-out' %>
-  </div>
-
   <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
     <% @books.each do |book| %>
       <%= link_to book_path(book), class: "block" do %>
         <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out p-6">
-          <h3 class="text-xl font-semibold text-gray-900 mb-2"><%= book.title %></h3>
+          <h2 class="text-xl font-semibold text-gray-900 mb-2"><%= book.title %></h2>
           <p class="text-gray-600"><%= book.author.name if book.author %></p>
         </div>
       <% end %>
     <% end %>
   </div>
+  
+  <% if @books.empty? %>
+    <div class="text-center py-12">
+      <p class="text-gray-600 text-lg">Nenhum livro cadastrado ainda.</p>
+      <%= link_to 'Adicionar um livro', new_book_path, class: 'inline-block mt-4 px-6 py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition duration-150 ease-in-out' %>
+    </div>
+  <% end %>
 </main>

@@ -1,0 +1,11 @@
+<header class="fixed w-full top-0 z-10 bg-gradient-to-r from-purple-600 to-indigo-600 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="py-4">
+      <h1 class="text-4xl font-bold text-white text-center mb-4">Livros que li</h1>
+      <nav class="flex justify-center space-x-8">
+        <%= link_to 'Livros', books_path, class: 'text-white hover:text-purple-200 font-medium transition duration-150 ease-in-out' %>
+        <%= link_to 'Autores', authors_path, class: 'text-white hover:text-purple-200 font-medium transition duration-150 ease-in-out' %>
+      </nav>
+    </div>
+  </div>
+</header>
